@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tong_3dcalculator;
+package threed_calculator;
 
 import java.util.Stack;
 
@@ -106,10 +106,10 @@ public class Function3D{
                         temp += tokes[i++];
                     }
                     i--;
-                    numbers.push(calculateOperation('^', numbers.pop(), Double.parseDouble(temp)));
+                    numbers.push(calculateOperation('^', Double.parseDouble(temp), numbers.pop()));
                 }
                 else{
-                    specialOperations.push('^');
+                    operations.push('^');
                 }
             }
             else if(tokes[i] == 'x'){
@@ -176,7 +176,7 @@ public class Function3D{
             case '+': return a+b;
             case '*': return a*b;
             case '/': if(a!=0){return b/a;}else{return 0;}
-            case '^': return Math.pow(a,b);
+            case '^': return Math.pow(b,a);
         }
         return 0;
     }
