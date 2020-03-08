@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tong_3dcalculator;
+package threed_calculator;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -188,7 +188,7 @@ public class Equation2DInput extends JFrame implements ActionListener{
     }
     
     public void actionPerformed(ActionEvent e){
-        if(e.getSource() == addEquation){
+        if(e.getSource() == addEquation && n<9){
             addInput();
         }
         else if(e.getSource() == calcDeriv){
@@ -217,12 +217,12 @@ public class Equation2DInput extends JFrame implements ActionListener{
         else{
             int index = ((((JButton)e.getSource()).getY()-1)/50)-1;
             int counter = 1;
-            if(inGraphD.isSelected()){
+            if(inGraphD.isSelected() && derivativeSelector.getSelectedIndex() == index){
                 counter++;
             }
             String[] temp = new String[counter];
             temp[0] = equations.get(index).getText();
-            if (inGraphD.isSelected()){
+            if (inGraphD.isSelected() && derivativeSelector.getSelectedIndex() == index){
                 Function2D func = new Function2D(equations.get(derivativeSelector.getSelectedIndex()).getText());
                 double x = Double.parseDouble(derivAts[0].getText());
                 double y = func.calculateValue(x);
@@ -231,7 +231,6 @@ public class Equation2DInput extends JFrame implements ActionListener{
                 double derivativeX = func.calculateDerivative(x);
                 derivativeX = ((int)(derivativeX*1000.0))/1000.0;
                 String newEqua = "" + derivativeX + "*(-(" + x + ")+x)+(" + y + ")";
-                System.out.println(newEqua);
                 temp[1] = newEqua;
             }
             Renderer2D rend = new Renderer2D(temp);
