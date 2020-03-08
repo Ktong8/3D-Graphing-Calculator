@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tong_3dcalculator;
+package threed_calculator;
 import java.awt.*;
 import java.awt.geom.Path2D;
 import java.awt.image.BufferedImage;
@@ -44,14 +44,12 @@ public class Renderer3D extends JFrame{
         *Just to clear up any suspicion of plagiarism :)
         */
         horizontalSlider = new JSlider(0,360,0);
-        verticalSlider = new JSlider(SwingConstants.VERTICAL, -90, 90, 0);
-        //Too lazy to put a whole set of if statements with this, so I made built in methods. 
+        verticalSlider = new JSlider(SwingConstants.VERTICAL, -90, 90, 0); 
         horizontalSlider.addChangeListener(new ChangeListener(){
             public void stateChanged(ChangeEvent e){
                 renderPanel.repaint();
             }
         });
-        //Too lazy to put a whole set of if statements with this, so I made built in methods. 
         verticalSlider.addChangeListener(new ChangeListener(){
             public void stateChanged(ChangeEvent e){
                 renderPanel.repaint();
