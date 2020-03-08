@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tong_3dcalculator;
+package threed_calculator;
 import java.util.*;
 /**
  *
@@ -39,12 +39,11 @@ public class Function2D{
         Stack<Character> specialOperations = new Stack<Character>();
         
         for(int i = 0; i<tokes.length; i++){
-            if(tokes[i] == ' '){
+            if(tokes[i] == ' '){ //blanks
                 continue;
             }
-            if(((int)tokes[i] >= 48 && (int)tokes[i] <= 57)||((int)tokes[i] == 46)){
+            if(((int)tokes[i] >= 48 && (int)tokes[i] <= 57)||((int)tokes[i] == 46)){ //numbers
                 String temp = "";
-                int w = i;
                 while(i<tokes.length && ((((int)tokes[i] >= 48 && (int)tokes[i] <=57))|| (int)tokes[i] == 46)){
                     temp += tokes[i++];
                 }
@@ -101,10 +100,10 @@ public class Function2D{
                         temp += tokes[i++];
                     }
                     i--;
-                    numbers.push(calculateOperation('^', numbers.pop(), Double.parseDouble(temp)));
+                    numbers.push(calculateOperation('^', Double.parseDouble(temp), numbers.pop()));
                 }
                 else{
-                    specialOperations.push('^');
+                    operations.push('^');
                 }
             }
             else if(tokes[i] == 'x'){
@@ -168,7 +167,7 @@ public class Function2D{
             case '+': return a+b;
             case '*': return a*b;
             case '/': if(a!=0){return b/a;}else{return 0;}
-            case '^': return Math.pow(a,b);
+            case '^': return Math.pow(b,a);
         }
         return 0;
     }
